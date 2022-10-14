@@ -12,7 +12,7 @@ export default function Home() {
       <h1>Hello! {counter}</h1>
       <button onClick={counterUp}>click me</button>
       <br />
-      <NavBar />
+      {/* <NavBar /> */}
     </div>
   );
 }
