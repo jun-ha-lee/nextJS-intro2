@@ -1,5 +1,6 @@
 import { useState } from "react";
-import NavBar from "../components/NavBar";
+// import NavBar from "../components/NavBar";
+import Seo from "../components/Seo";
 
 export default function Home() {
   const [counter, setCounter] = useState(0);
@@ -9,6 +10,7 @@ export default function Home() {
 
   return (
     <div>
+      <Seo title='Home' />
       <h1>Hello! {counter}</h1>
       <button onClick={counterUp}>click me</button>
       <br />
