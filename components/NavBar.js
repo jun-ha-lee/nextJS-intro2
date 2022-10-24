@@ -8,10 +8,11 @@ import styles from "./NavBar.module.css"; // css import
 
 export default function NavBar() {
   const router = useRouter();
-  console.log(router);
+  console.log(router+'router');
 
   return (
     <nav className={styles.nav}> {/* 모듈css사용 */}
+      <img src="/vercel.svg" alt="" /> {/* public폴더 안에 있으면 경로가 루트로 바로 찾을 수 있다 */}
       <Link href='/'>{/* <a href=''>대신에 <Link href=''><a></a></Link>쓴다 */}
         {/* <Link안에는 href만 들어가고 className이라던지 style이라던지 적용안된다, 적용하려면 아래 <a>에 넣어야 함 */}
         <a className="home" style={{ color: router.pathname === '/' ? 'red' : 'blue' }}>Home</a>

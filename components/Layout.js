@@ -8,5 +8,6 @@ export default function Layout({ children }) {
   return <>
     <NavBar />
     <div>{children}</div>
+    <div>hi</div>
   </>
 }
