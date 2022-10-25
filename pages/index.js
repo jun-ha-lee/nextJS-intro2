@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 // import NavBar from "../components/NavBar";
 import Seo from "../components/Seo";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 // const API_KEY = "10923b261ba94d897ac6b81148314a3f"; // API KEY입력
 // next.config.js로 이동
@@ -33,6 +35,21 @@ export default function Home({ results }) {
   //   })();
   // }, []);
 
+  const router = useRouter();
+  function movieClick(id, title) {
+    // movie.id에서 받아온 id
+    router.push(
+      {
+        pathname: `/movies/${id}`,
+        query: {
+          // title: "potato", // http://localhost:3000/movies/436270?title=potato 이것처럼 보임
+          title: title,
+        },
+      },
+      `/movies/${id}`
+    ); // , '' 이자리는 위의 지저분한 주소를 ''으로 변화시킴
+  }
+
   return (
     <div>
       <Seo title="Home" />
@@ -44,8 +61,23 @@ export default function Home({ results }) {
       {/* {console.log(!movies)} */}
       {/* ?. 옵셔널 체이닝 사용, 이유는 에러를 출력안하고 undefined를 출력하여 안정성 도모 */}
       {results?.map((movie) => (
-        <div key={movie.id}>
-          <h4>{movie.original_title}</h4>
+        <div
+          key={movie.id}
+          onClick={() => movieClick(movie.id, movie.original_title)}
+        >
+          <h4>
+            <Link
+              href={{
+                pathname: `/movies/${movie.id}`,
+                query: {
+                  title: movie.original_title,
+                },
+              }}
+              as={`/movies/${movie.id}`}
+            >
+              <a>{movie.original_title}</a>
+            </Link>
+          </h4>
           <img
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             alt={movie.original_title}
